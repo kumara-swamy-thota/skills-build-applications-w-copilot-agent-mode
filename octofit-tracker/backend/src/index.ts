@@ -1,8 +1,8 @@
 import express from 'express';
 import cors from 'cors';
-import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
+import { connectDB } from './database';
 import usersRouter from './routes/users';
 import teamsRouter from './routes/teams';
 import activitiesRouter from './routes/activities';
@@ -13,7 +13,6 @@ dotenv.config();
 
 const app = express();
 const PORT = 8000;
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/octofit_db';
 
 // Codespaces-aware base URL
 const codespaceName = process.env.CODESPACE_NAME;
@@ -35,10 +34,8 @@ app.use('/api/activities', activitiesRouter);
 app.use('/api/leaderboard', leaderboardRouter);
 app.use('/api/workouts', workoutsRouter);
 
-mongoose
-  .connect(MONGO_URI)
+connectDB()
   .then(() => {
-    console.log('Connected to MongoDB (octofit_db)');
     app.listen(PORT, () => {
       console.log(`Backend running on ${baseUrl}`);
     });
