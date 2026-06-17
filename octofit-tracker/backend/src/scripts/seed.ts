@@ -6,7 +6,7 @@
  * for users, teams, activities, leaderboard, and workouts collections.
  */
 
-import { connectDB, disconnectDB } from '../database';
+import { connectDB, disconnectDB } from '../config/database';
 import User from '../models/User';
 import Team from '../models/Team';
 import Activity from '../models/Activity';
