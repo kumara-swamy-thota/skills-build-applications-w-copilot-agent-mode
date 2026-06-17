@@ -26,7 +26,7 @@ async function seed() {
   ]);
   console.log('Cleared existing collections');
 
-  // ---- Users ----
+  // --- Users ---
   const users = await User.insertMany([
     { username: 'mona_octocat', email: 'mona@octofit.dev', password: 'hashed_pw_1' },
     { username: 'hubot_runner', email: 'hubot@octofit.dev', password: 'hashed_pw_2' },
