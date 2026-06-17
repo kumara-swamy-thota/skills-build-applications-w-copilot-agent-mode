@@ -6,8 +6,7 @@
  * for users, teams, activities, leaderboard, and workouts collections.
  */
 
-import mongoose from 'mongoose';
-import { connectDB } from '../database';
+import { connectDB, disconnectDB } from '../database';
 import User from '../models/User';
 import Team from '../models/Team';
 import Activity from '../models/Activity';
@@ -102,11 +101,11 @@ async function seed() {
   console.log(`Inserted ${workouts.length} workouts`);
 
   console.log('\n✓ octofit_db seeded successfully');
-  await mongoose.disconnect();
+  await disconnectDB();
 }
 
 seed().catch((err) => {
   console.error('Seed error:', err);
-  mongoose.disconnect();
+  disconnectDB();
   process.exit(1);
 });
