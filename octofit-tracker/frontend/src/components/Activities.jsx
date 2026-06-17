@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
-import { API_BASE, toArray } from '../api';
+import { toArray } from '../api';
+
+const codespaceName = import.meta.env.VITE_CODESPACE_NAME;
+const API_URL = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev/api/activities`
+  : 'http://localhost:8000/api/activities';
 
 export default function Activities() {
   const [activities, setActivities] = useState([]);
@@ -7,7 +12,7 @@ export default function Activities() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`${API_BASE}/api/activities/`)
+    fetch(`${API_URL}/`)
       .then((res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
