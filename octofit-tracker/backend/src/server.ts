@@ -17,7 +17,7 @@ const PORT = 8000;
 // Codespaces-aware base URL
 const codespaceName = process.env.CODESPACE_NAME;
 const baseUrl = codespaceName
-  ? `https://${codespaceName}-${PORT}.app.github.dev`
+  ? `https://${codespaceName}-8000.app.github.dev`
   : `http://localhost:${PORT}`;
 
 app.use(cors());
